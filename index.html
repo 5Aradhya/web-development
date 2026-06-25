@@ -8,18 +8,14 @@
 </head>
 <body>
 
+    
     <header>
-        <div class="progress-bar" id="progressBar"></div>
         <nav>
             <h1>My Website</h1>
-            <div class="nav-controls">
-                <div class="menu-btn">☰</div>
-                <button id="themeBtn">🌙</button>
-            </div>
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="service.html">Services</a></li>
+                <li><a href="services.html">Services</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -27,204 +23,17 @@
         </nav>
     </header>
 
-    <main>
+    
+    <section>
+        <h2>Welcome to My Website</h2>
+        <p>This is my first responsive website!</p>
+        <a href="about.html">Know More</a>
+    </section>
 
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <h2>Welcome to My Website</h2>
-            <p>This is my first responsive website!</p>
-            <div class="hero-btns">
-                <a href="about.html" class="btn">Know More</a>
-                <a href="contact.html" class="btn btn-outline">Hire Me</a>
-            </div>
-        </section>
-
-        <!-- Image Slider -->
-        <section class="slider-section">
-            <h2>Our Work</h2>
-            <p>See what we have built!</p>
-            <div class="slider-container">
-                <div class="slider-track" id="sliderTrack">
-                    <div class="slide">
-                        <img src="https://picsum.photos/900/400?random=10" alt="Slide 1">
-                        <div class="slide-caption">Web Design</div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://picsum.photos/900/400?random=11" alt="Slide 2">
-                        <div class="slide-caption">UI/UX Design</div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://picsum.photos/900/400?random=12" alt="Slide 3">
-                        <div class="slide-caption">Mobile Apps</div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://picsum.photos/900/400?random=13" alt="Slide 4">
-                        <div class="slide-caption">E-Commerce</div>
-                    </div>
-                </div>
-                <button class="slide-btn prev" id="prevBtn">&#10094;</button>
-                <button class="slide-btn next" id="nextBtn">&#10095;</button>
-                <div class="slider-dots" id="sliderDots"></div>
-            </div>
-        </section>
-
-        <!-- Tabbed Content -->
-        <section class="tabs-section">
-            <h2>Our Skills</h2>
-            <p>What we are good at!</p>
-            <div class="tabs-container">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="html">HTML</button>
-                    <button class="tab-btn" data-tab="css">CSS</button>
-                    <button class="tab-btn" data-tab="js">JavaScript</button>
-                    <button class="tab-btn" data-tab="design">Design</button>
-                </div>
-                <div class="tab-content active" id="html">
-                    <h3>💻 HTML</h3>
-                    <p>Strong knowledge of HTML5 semantic tags, forms, tables, iframes and multimedia elements.</p>
-                </div>
-                <div class="tab-content" id="css">
-                    <h3>🎨 CSS</h3>
-                    <p>Expert in CSS3, Flexbox, Grid, Animations, Transitions and Responsive Design.</p>
-                </div>
-                <div class="tab-content" id="js">
-                    <h3>⚡ JavaScript</h3>
-                    <p>Good knowledge of ES6, DOM Manipulation, Events, Arrays, Objects and APIs.</p>
-                </div>
-                <div class="tab-content" id="design">
-                    <h3>🖌️ Design</h3>
-                    <p>Creative UI/UX designs with focus on user experience and modern aesthetics.</p>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Animated Counters -->
-        <section class="counter-section">
-            <h2>Our Achievements</h2>
-            <p>Numbers that speak for themselves!</p>
-            <div class="counter-grid">
-                <div class="counter-item">
-                    <h3 class="counter" data-target="50">0</h3>
-                    <p>Projects Completed</p>
-                </div>
-                <div class="counter-item">
-                    <h3 class="counter" data-target="30">0</h3>
-                    <p>Happy Clients</p>
-                </div>
-                <div class="counter-item">
-                    <h3 class="counter" data-target="5">0</h3>
-                    <p>Years Experience</p>
-                </div>
-                <div class="counter-item">
-                    <h3 class="counter" data-target="100">0</h3>
-                    <p>5 Star Reviews</p>
-                </div>
-            </div>
-        </section>
-
-
-         <!-- Drag and Drop List -->
-        <section class="dragdrop-section">
-            <h2>My Skills</h2>
-            <p>Drag and rearrange my skills!</p>
-            <ul class="drag-list" id="dragList">
-                <li class="drag-item" draggable="true">🌐 HTML5</li>
-                <li class="drag-item" draggable="true">🎨 CSS3</li>
-                <li class="drag-item" draggable="true">⚡ JavaScript</li>
-                <li class="drag-item" draggable="true">📱 Responsive Design</li>
-                <li class="drag-item" draggable="true">🖌️ UI/UX Design</li>
-                <li class="drag-item" draggable="true">🔒 Web Security</li>
-            </ul>
-        </section>
-
-        <!-- Accordion FAQ -->
-        <section class="faq-section">
-            <h2>FAQ</h2>
-            <p>Frequently Asked Questions!</p>
-
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question">What services do you offer? <span>+</span></button>
-                    <div class="faq-answer">
-                        <p>I offer Web Design, Web Development, UI/UX Design, Mobile Friendly websites and more.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">How long does a website take? <span>+</span></button>
-                    <div class="faq-answer">
-                        <p>A basic website takes 3-7 days. A complex website can take 2-4 weeks depending on requirements.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">What is your pricing? <span>+</span></button>
-                    <div class="faq-answer">
-                        <p>Pricing depends on the project. Contact me for a free quote and discussion.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question">Do you provide support after delivery? <span>+</span></button>
-                    <div class="faq-answer">
-                        <p>Yes! I provide 30 days free support after project delivery.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonial Slider (CSS-only) -->
-        <section class="testimonial-section">
-            <h2>What Clients Say</h2>
-
-            <input type="radio" name="testimonial" id="t1" checked>
-            <input type="radio" name="testimonial" id="t2">
-            <input type="radio" name="testimonial" id="t3">
-
-            <div class="testimonial-slider">
-                <div class="testimonial-track">
-                    <div class="testimonial-card">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p>"Excellent work! My website looks absolutely amazing."</p>
-                        <h4>— Rahul Sharma</h4>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p>"Very professional and delivered on time!"</p>
-                        <h4>— Priya Singh</h4>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p>"Best web developer I have ever worked with."</p>
-                        <h4>— Amit Verma</h4>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-dots">
-                <label for="t1"></label>
-                <label for="t2"></label>
-                <label for="t3"></label>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Modal Popup -->
-        <div class="modal-overlay" id="modalOverlay">
-            <div class="modal-box">
-                <button class="modal-close" id="modalClose">✕</button>
-                <h3>🎉 Welcome!</h3>
-                <p>Thanks for visiting my website! Check out my latest work.</p>
-                <a href="portfolio.html" class="btn">View Portfolio</a>
-            </div>
-        </div>
-
-    <button class="top-btn" id="topBtn">⬆️</button>
-
+  
     <footer>
         <p>© 2026 My Website. All Rights Reserved.</p>
     </footer>
-
-    <script src="js/script.js"></script>
 
 </body>
 </html>

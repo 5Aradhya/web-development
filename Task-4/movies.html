@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav aria-label="Main navigation">
+            <h1>My Website</h1>
+            <div class="nav-controls">
+                <div class="menu-btn">☰</div>
+                <button id="themeBtn" aria-label="Toggle dark mode">🌙</button>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="weather.html">Weather</a></li>
+                <li><a href="movies.html" class="active">Movies</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="movies-section">
+            <h2>Movie Search</h2>
+            <p>Search for any movie and view details!</p>
+
+            <div class="movie-search-box">
+                <label for="movieInput" class="sr-only">Movie title</label>
+                <input type="text" id="movieInput" placeholder="Search movie title...">
+                <button id="movieSearchBtn" class="btn">Search</button>
+            </div>
+
+            <div class="movie-filters">
+                <label for="yearFilter" class="sr-only">Filter by year</label>
+                <select id="yearFilter">
+                    <option value="">All Years</option>
+                </select>
+                <label for="typeFilter" class="sr-only">Filter by type</label>
+                <select id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="movie">Movie</option>
+                    <option value="series">Series</option>
+                    <option value="episode">Episode</option>
+                </select>
+                <button id="showFavoritesBtn" class="btn btn-outline">❤️ Favorites</button>
+            </div>
+
+            <p class="movie-error" id="movieError" role="alert"></p>
+            <p class="movie-loading" id="movieLoading" aria-live="polite"></p>
+
+            <div class="movie-grid" id="movieGrid"></div>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="movieModalOverlay">
+        <div class="modal-box movie-modal-box">
+            <button class="modal-close" id="movieModalClose" aria-label="Close movie details">✕</button>
+            <div id="movieModalContent"></div>
+        </div>
+    </div>
+
+    <button class="top-btn" id="topBtn" aria-label="Back to top">⬆️</button>
+
+    <footer>
+        <p>© 2026 My Website. All Rights Reserved.</p>
+    </footer>
+<!-- 
+    <script src="js/script.js" defer></script>
+    <script src="js/movies.js" defer></script> -->
+
+    <script src="js/script.min.js" defer></script>
+<script src="js/movies.min.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools</title>
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+
+    <header>
+        <nav aria-label="Main navigation">
+            <h1>My Website</h1>
+            <div class="nav-controls">
+                <div class="menu-btn">☰</div>
+                <button id="themeBtn" aria-label="Toggle dark mode">🌙</button>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="weather.html">Weather</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="tools.html" class="active">Tools</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="quote-section">
+            <h2>Quote Generator</h2>
+            <p>Get inspired with a random quote!</p>
+
+            <label for="quoteCategory" class="sr-only">Quote category</label>
+            <select id="quoteCategory">
+                <option value="">Any Category</option>
+                <option value="wisdom">Wisdom</option>
+                <option value="motivational">Motivational</option>
+                <option value="happiness">Happiness</option>
+                <option value="success">Success</option>
+                <option value="love">Love</option>
+            </select>
+
+            <p class="quote-error" id="quoteError" role="alert"></p>
+
+            <div class="quote-card">
+                <p class="quote-text" id="quoteText">Click "New Quote" to get started!</p>
+                <p class="quote-author" id="quoteAuthor"></p>
+
+                <div class="quote-actions">
+                    <button id="newQuoteBtn" class="btn">🔄 New Quote</button>
+                    <button id="copyQuoteBtn" class="btn btn-outline">📋 Copy</button>
+                    <button id="tweetQuoteBtn" class="btn btn-outline">🐦 Tweet</button>
+                </div>
+                <p class="quote-copied" id="quoteCopiedMsg" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <section class="user-section">
+            <h2>Random Profile Generator</h2>
+            <p>Generate a random user profile!</p>
+
+            <button id="generateUserBtn" class="btn">🎲 Generate Profile</button>
+
+            <div class="user-card" id="userCard" style="display:none;">
+                <img id="userAvatar" src="" alt="Generated user avatar" width="120" height="120">
+                <h3 id="userName"></h3>
+                <p id="userEmail"></p>
+                <p id="userPhone"></p>
+                <p id="userLocation"></p>
+
+                <div class="user-actions">
+                    <button id="downloadVcardBtn" class="btn btn-outline">⬇️ Download vCard</button>
+                    <button id="saveContactBtn" class="btn btn-outline">💾 Save to Contacts</button>
+                </div>
+            </div>
+
+            <div class="contacts-list" id="contactsList" style="display:none;">
+                <h3>Saved Contacts</h3>
+                <div class="contacts-grid" id="contactsGrid"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <button class="top-btn" id="topBtn" aria-label="Back to top">⬆️</button>
+
+    <footer>
+        <p>© 2026 My Website. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.min.js" defer></script>
+    <script src="js/tools.js" defer></script>
+
+</body>
+</html>

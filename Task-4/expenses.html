@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+
+    <header>
+        <nav aria-label="Main navigation">
+            <h1>My Website</h1>
+            <div class="nav-controls">
+                <div class="menu-btn">☰</div>
+                <button id="themeBtn" aria-label="Toggle dark mode">🌙</button>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="weather.html">Weather</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="expenses.html" class="active">Expenses</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="expense-section">
+            <h2>Expense Tracker</h2>
+            <p>Track your daily expenses and stay on budget!</p>
+
+            <form class="expense-form" id="expenseForm">
+                <label for="expenseTitle" class="sr-only">Expense title</label>
+                <input type="text" id="expenseTitle" placeholder="Expense title..." required>
+
+                <label for="expenseAmount" class="sr-only">Amount</label>
+                <input type="number" id="expenseAmount" placeholder="Amount (₹)" required>
+
+                <label for="expenseCategory" class="sr-only">Category</label>
+                <select id="expenseCategory" required>
+                    <option value="">Select Category</option>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="expenseDate" class="sr-only">Date</label>
+                <input type="date" id="expenseDate" required>
+
+                <button type="submit" class="btn">Add Expense</button>
+            </form>
+
+            <p class="expense-error" id="expenseError" role="alert"></p>
+
+            <div class="budget-box">
+                <label for="budgetInput">Monthly Budget (₹):</label>
+                <input type="number" id="budgetInput" placeholder="Set your budget">
+                <button id="setBudgetBtn" class="btn btn-outline">Set Budget</button>
+                <p class="budget-alert" id="budgetAlert" aria-live="polite"></p>
+            </div>
+
+            <div class="expense-filters">
+                <label for="searchExpense" class="sr-only">Search by title</label>
+                <input type="text" id="searchExpense" placeholder="Search by title...">
+
+                <label for="filterCategory" class="sr-only">Filter by category</label>
+                <select id="filterCategory">
+                    <option value="">All Categories</option>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="filterStartDate" class="sr-only">Start date</label>
+                <input type="date" id="filterStartDate">
+
+                <label for="filterEndDate" class="sr-only">End date</label>
+                <input type="date" id="filterEndDate">
+
+                <button id="applyFilterBtn" class="btn btn-outline">Apply Filter</button>
+                <button id="clearFilterBtn" class="btn btn-outline">Clear Filter</button>
+            </div>
+
+            <div class="expense-list-container">
+                <table class="expense-table" id="expenseTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Amount (₹)</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expenseTableBody"></tbody>
+                </table>
+                <p class="expense-empty" id="expenseEmptyMsg">No expenses added yet.</p>
+                <div id="expenseSentinel"></div>
+            </div>
+
+            <p class="expense-total" id="expenseTotal"></p>
+
+            <div class="expense-charts">
+                <div class="chart-box">
+                    <h3>Category-wise Spending</h3>
+                    <canvas id="pieChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h3>Spending Trend</h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <button class="top-btn" id="topBtn" aria-label="Back to top">⬆️</button>
+
+    <footer>
+        <p>© 2026 My Website. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.min.js" defer></script>
+    <script src="js/expenses.js" defer></script>
+
+</body>
+</html>

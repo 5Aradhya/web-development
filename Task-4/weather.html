@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav aria-label="Main navigation">
+            <h1>My Website</h1>
+            <div class="nav-controls">
+                <div class="menu-btn">☰</div>
+                <button id="themeBtn" aria-label="Toggle dark mode">🌙</button>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="weather.html" class="active">Weather</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="weather-section">
+            <h2>Weather App</h2>
+            <p>Search any city or use your current location!</p>
+
+            <div class="weather-search-box">
+                <label for="cityInput" class="sr-only">City name</label>
+                <input type="text" id="cityInput" placeholder="Enter city name...">
+                <button id="searchBtn" class="btn">Search</button>
+                <button id="locationBtn" class="btn btn-outline">📍 My Location</button>
+            </div>
+
+            <div class="unit-toggle">
+                <button id="unitBtn">Switch to °F</button>
+            </div>
+
+            <p class="weather-error" id="weatherError" role="alert"></p>
+            <p class="weather-loading" id="weatherLoading" aria-live="polite"></p>
+
+            <div class="weather-card" id="weatherCard" style="display:none;">
+                <div class="weather-main">
+                    <img id="weatherIcon" src="" alt="weather icon" width="100" height="100">
+                    <h3 id="weatherCity"></h3>
+                    <p id="weatherTemp" class="weather-temp"></p>
+                    <p id="weatherDesc" class="weather-desc"></p>
+                </div>
+                <div class="weather-details">
+                    <div class="weather-detail-item">
+                        <span>Feels Like</span>
+                        <p id="weatherFeels"></p>
+                    </div>
+                    <div class="weather-detail-item">
+                        <span>Humidity</span>
+                        <p id="weatherHumidity"></p>
+                    </div>
+                    <div class="weather-detail-item">
+                        <span>Wind</span>
+                        <p id="weatherWind"></p>
+                    </div>
+                    <div class="weather-detail-item">
+                        <span>Pressure</span>
+                        <p id="weatherPressure"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-searches" id="recentSearches" style="display:none;">
+                <h3>Recent Searches</h3>
+                <div class="recent-chips" id="recentChips"></div>
+            </div>
+        </section>
+    </main>
+
+    <button class="top-btn" id="topBtn" aria-label="Back to top">⬆️</button>
+
+    <footer>
+        <p>© 2026 My Website. All Rights Reserved.</p>
+    </footer>
+
+    <!-- <script src="js/script.js" defer></script>
+    <script src="js/weather.js" defer></script> -->
+
+<script src="js/script.min.js" defer></script>
+<script src="js/weather.min.js" defer></script>
+
+</body>
+</html>

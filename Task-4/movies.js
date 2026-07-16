@@ -1,0 +1,220 @@
+// ===== MOVIE SEARCH APP =====
+
+const OMDB_API_KEY = "85e0f38c";
+
+const movieInput = document.getElementById("movieInput");
+const movieSearchBtn = document.getElementById("movieSearchBtn");
+const yearFilter = document.getElementById("yearFilter");
+const typeFilter = document.getElementById("typeFilter");
+const showFavoritesBtn = document.getElementById("showFavoritesBtn");
+const movieError = document.getElementById("movieError");
+const movieLoading = document.getElementById("movieLoading");
+const movieGrid = document.getElementById("movieGrid");
+const movieModalOverlay = document.getElementById("movieModalOverlay");
+const movieModalClose = document.getElementById("movieModalClose");
+const movieModalContent = document.getElementById("movieModalContent");
+
+if (movieInput) {
+
+    let lastResults = [];
+    let showingFavorites = false;
+
+    function getFavorites() {
+        const data = localStorage.getItem("favoriteMovies");
+        return data ? JSON.parse(data) : [];
+    }
+
+    function isFavorite(imdbID) {
+        return getFavorites().some(m => m.imdbID === imdbID);
+    }
+
+    function toggleFavorite(movie) {
+        let favorites = getFavorites();
+
+        if (isFavorite(movie.imdbID)) {
+            favorites = favorites.filter(m => m.imdbID !== movie.imdbID);
+        } else {
+            favorites.push(movie);
+        }
+
+        localStorage.setItem("favoriteMovies", JSON.stringify(favorites));
+    }
+
+    async function searchMovies(title) {
+        movieError.textContent = "";
+        movieLoading.textContent = "Searching movies...";
+        movieGrid.innerHTML = "";
+
+        try {
+            const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${encodeURIComponent(title)}`;
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.Response === "False") {
+                throw new Error(data.Error || "No movies found!");
+            }
+
+            lastResults = data.Search;
+            populateYearFilter(lastResults);
+            renderMovies(lastResults);
+
+        } catch (error) {
+            movieError.textContent = "⚠️ " + error.message;
+        } finally {
+            movieLoading.textContent = "";
+        }
+    }
+
+    function populateYearFilter(movies) {
+        const years = [...new Set(movies.map(m => m.Year))].sort().reverse();
+
+        yearFilter.innerHTML = '<option value="">All Years</option>';
+
+        years.forEach(year => {
+            const option = document.createElement("option");
+            option.value = year;
+            option.textContent = year;
+            yearFilter.appendChild(option);
+        });
+    }
+
+    function applyFiltersAndRender() {
+        let movies = showingFavorites ? getFavorites() : lastResults;
+
+        const selectedYear = yearFilter.value;
+        const selectedType = typeFilter.value;
+
+        if (selectedYear) {
+            movies = movies.filter(m => m.Year === selectedYear);
+        }
+
+        if (selectedType) {
+            movies = movies.filter(m => m.Type === selectedType);
+        }
+
+        renderMovies(movies);
+    }
+
+    function renderMovies(movies) {
+        movieGrid.innerHTML = "";
+
+        if (!movies || movies.length === 0) {
+            movieError.textContent = "No movies to show!";
+            return;
+        }
+
+        movieError.textContent = "";
+
+        movies.forEach(movie => {
+            const card = document.createElement("div");
+            card.className = "movie-card";
+
+            const poster = movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/200x280?text=No+Image";
+
+            card.innerHTML = `
+                <button class="movie-fav-btn ${isFavorite(movie.imdbID) ? "active" : ""}">❤️</button>
+                <img src="${poster}" alt="${movie.Title}">
+                <div class="movie-card-info">
+                    <h4>${movie.Title}</h4>
+                    <p>${movie.Year} • ${movie.Type}</p>
+                </div>
+            `;
+
+            card.addEventListener("click", (e) => {
+                if (!e.target.classList.contains("movie-fav-btn")) {
+                    openMovieModal(movie.imdbID);
+                }
+            });
+
+            const favBtn = card.querySelector(".movie-fav-btn");
+            favBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                toggleFavorite(movie);
+                favBtn.classList.toggle("active");
+
+                if (showingFavorites && !isFavorite(movie.imdbID)) {
+                    card.remove();
+                }
+            });
+
+            movieGrid.appendChild(card);
+        });
+    }
+
+    async function openMovieModal(imdbID) {
+        movieModalContent.innerHTML = "<p>Loading details...</p>";
+        movieModalOverlay.classList.add("active");
+
+        try {
+            const url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${imdbID}&plot=full`;
+            const response = await fetch(url);
+            const data = await response.json();
+
+            const poster = data.Poster !== "N/A" ? data.Poster : "https://via.placeholder.com/150x220?text=No+Image";
+
+            movieModalContent.innerHTML = `
+                <div class="movie-modal-header">
+                    <img src="${poster}" alt="${data.Title}">
+                    <div>
+                        <h3>${data.Title} (${data.Year})</h3>
+                        <p>${data.Genre}</p>
+                        <p>${data.Runtime} • ${data.Rated}</p>
+                        <p class="movie-modal-rating">⭐ ${data.imdbRating}/10</p>
+                    </div>
+                </div>
+                <p class="movie-modal-plot">${data.Plot}</p>
+            `;
+        } catch (error) {
+            movieModalContent.innerHTML = "<p>⚠️ Could not load details.</p>";
+        }
+    }
+
+    movieSearchBtn.addEventListener("click", () => {
+        const title = movieInput.value.trim();
+
+        if (title === "") {
+            movieError.textContent = "⚠️ Please enter a movie title!";
+            return;
+        }
+
+        showingFavorites = false;
+        searchMovies(title);
+    });
+
+    movieInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            movieSearchBtn.click();
+        }
+    });
+
+    yearFilter.addEventListener("change", applyFiltersAndRender);
+    typeFilter.addEventListener("change", applyFiltersAndRender);
+
+    showFavoritesBtn.addEventListener("click", () => {
+        showingFavorites = !showingFavorites;
+        showFavoritesBtn.textContent = showingFavorites ? "🔍 Back to Search" : "❤️ Favorites";
+        yearFilter.innerHTML = '<option value="">All Years</option>';
+
+        if (showingFavorites) {
+            renderMovies(getFavorites());
+        } else {
+            renderMovies(lastResults);
+        }
+    });
+
+    movieModalClose.addEventListener("click", () => {
+        movieModalOverlay.classList.remove("active");
+    });
+
+    movieModalOverlay.addEventListener("click", (e) => {
+        if (e.target === movieModalOverlay) {
+            movieModalOverlay.classList.remove("active");
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            movieModalOverlay.classList.remove("active");
+        }
+    });
+}

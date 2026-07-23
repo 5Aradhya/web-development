@@ -1,8 +1,8 @@
 const CACHE_NAME = "mywebsite-cache-v1";
 const urlsToCache = [
     "index.html",
-    "css/style.css",
-    "js/script.js"
+    "style.css",
+    "script.js"
 ];
 
 // Install: pehli baar service worker register hote waqt files cache karo
